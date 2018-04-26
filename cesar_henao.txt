@@ -26,6 +26,6 @@ CREATE USER ejercicios
    IDENTIFIED BY ejercicios
    DEFAULT TABLESPACE mid_term
    quota UNLIMITED on mid_term
-   profile exam
+   profile exam 
 
 SQL
