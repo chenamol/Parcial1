@@ -2,38 +2,30 @@ plsql.execute <<-SQL
  -- CREACION TABLESPACE SIN PUNTO Y COMA
 CREATE TABLESPACE PARCIAL1 datafile
 'C:\oraclexe/parcial1.dbf' size 100M
-AUTOEXTEND ON NEXT 500k MAXSIZE 400M
-EXTENT MANAGEMENT LOCAL
-SEGMENT SPACE MANAGEMENT AUTO
-ONLINE
+CREATE TABLESPACE mid_term
+    DATAFILE 'cesar_henao.dat' SIZE 20M
+    ONLINE
 
 
 SQL
 
 plsql.execute <<-SQL
  -- CREACION PERFIL SIN PUNTO Y COMA
-CREATE PROFILE PRF_Parcial1   LIMIT
-SESSIONS_PER_USER                    5
-CPU_PER_SESSION                    UNLIMITED
-CPU_PER_CALL                       UNLIMITED
-CONNECT_TIME                         600
-iDLE_TIME                            30
-PRIVATE_SGA                          20M
-FAILED_LOGIN_ATTEMPTS                 20
-PASSWORD_LIFE_TIME                   30               
-PASSWORD_REUSE_TIME                  12
-PASSWORD_REUSE_MAX                    5
-PASSWORD_LOCK_TIME                    10
-PASSWORD_GRACE_TIME                   2
+  CREATE PROFILE exam   LIMIT
+SESSIONS_PER_USER                    20
+CONNECT_TIME                         500
+iDLE_TIME                            5
+FAILED_LOGIN_ATTEMPTS                 5
 
 
 SQL
 
 plsql.execute <<-SQL
  -- CREACION USUARIO SIN PUNTO Y COMA
-CREATE USER CESARH
-   IDENTIFIED BY CESARH
-   DEFAULT TABLESPACE PARCIAL1
-   quota 10M on PARCIAL1
+CREATE USER ejercicios
+   IDENTIFIED BY ejercicios
+   DEFAULT TABLESPACE mid_term
+   quota UNLIMITED on mid_term
+   profile exam;
 
 SQL
